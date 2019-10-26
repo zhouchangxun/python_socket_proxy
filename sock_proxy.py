@@ -17,9 +17,16 @@ import select
 import logging
 
 
-#set your proxy address and desitination address here.
-proxy_addr = ('', 9090)
-dest_addr = ('', 8080)
+import sys
+
+if len(sys.argv) <3:
+  print('usage:\n\tpython proxy-port.py localhost:2222 1.2.3.4:22');exit(-1)
+ipport1 = sys.argv[1].split(':')
+ipport2 = sys.argv[2].split(':')
+proxy_addr = (ipport1[0],int(ipport1[1]))
+dest_addr = (ipport2[0],int(ipport2[1]))
+#proxy_addr = ('', 9090)
+#dest_addr = ('', 8080)
 
 
 class SockForward(object):
